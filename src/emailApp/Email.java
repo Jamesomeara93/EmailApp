@@ -23,6 +23,11 @@ public class Email {
 		
 		// Call method that return a random password 
 		this.password = createPassword(passwordLength) ;
+		
+		// Combine all elements to create email
+		String email = firstName.toLowerCase() + lastName.toLowerCase() + "@"+dept.toLowerCase()+".com" ;
+		System.out.println(String.format("Your email is:\n%s", email));
+		System.out.println(String.format("Your password is:\n%s" ,this.password));
 	}
 	
 	// Create random password
