@@ -8,13 +8,15 @@ public class Email {
 	private String password ;
 	private int passwordLength = 10;
 	private String dept;
-	private int mailboxCapacity;
+	private int mailboxCapacity = 500 ;
 	private String alternateEmail;
+	private Scanner scanner ;
 	
 	//Constructor w/ first and last name 
-	public Email(String firstName, String lastName) {
+	public Email(String firstName, String lastName, Scanner scanner ) {
 		this.firstName = firstName;
 		this.lastName = lastName ;
+		this.scanner = scanner ;
 		String formatted = String.format("Email created: %s%s.com",this.firstName, this.lastName);
 		System.out.println(formatted);
 		
@@ -47,8 +49,7 @@ public class Email {
 	// Ask for dept
 	private String setDept() {
 		System.out.println("Enter department code: \n1 for HR\n2 for Engineering\n3 for IT\n4 for none");
-		Scanner scan = new Scanner(System.in) ;
-		int deptChoice = Integer.parseInt(scan.nextLine()) ;
+		int deptChoice = Integer.parseInt(this.scanner.nextLine()) ;
 		switch (deptChoice) {
 		case 1:
 			return "HR" ;
@@ -66,11 +67,25 @@ public class Email {
 			
 		}
 	}
-	// Generate random password
+	
 	
 	// Set mailbox capacity
-	
+	public void setCapacity(int size) {
+		System.out.println("Enter desired mailbox capacity: ");
+		this.mailboxCapacity = Integer.parseInt(this.scanner.nextLine()) ;
+	}
 	// Set alternate email
+	public void setAlternateEmail() {
+		System.out.println("Set alternate email: ");
+		this.alternateEmail = scanner.nextLine() ;
+	}
 	
 	// Change password 
+	public String changePassword() {
+		System.out.println("Desired password length?");
+		int length = Integer.parseInt(this.scanner.nextLine() ) ;		// could change this to be user input
+		String newPassword = createPassword(length) ;
+		System.out.println(String.format("New password:\n%s", newPassword));
+		return newPassword ;
+	}
 }
